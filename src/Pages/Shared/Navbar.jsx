@@ -46,8 +46,8 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-sm md:text-xl">
-          BISTRO BOSS <br /> Restaurant
+        <a className="btn btn-ghost normal-case text-white text-sm md:text-xl">
+          BistroBoss <br /> Restaurant
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
