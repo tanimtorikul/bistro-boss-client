@@ -33,10 +33,10 @@ const Testimonials = () => {
                 readOnly
               />
 
-              <FaQuoteLeft className="w-[100px] h-[100px] mb-[40px]" />
+              <FaQuoteLeft className="w-8 md:w-[100px] h-[100px] mb-[40px]" />
 
               <p>{review.details}</p>
-              <h3 className="text-2xl text-[#CD9003] font-medium uppercase mt-4">
+              <h3 className="text-lg md:text-2xl text-[#CD9003] font-medium uppercase mt-4">
                 {review.name}
               </h3>
             </div>

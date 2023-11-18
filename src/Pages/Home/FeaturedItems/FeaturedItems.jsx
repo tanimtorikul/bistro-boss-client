@@ -22,7 +22,9 @@ const FeaturedItems = () => {
             choice for culinary enthusiasts. Experience a symphony of taste like
             never before.
           </p>
-          <button className="btn btn-outline border-0 text-white border-b-4 mt-6">Order Now</button>
+          <button className="btn btn-outline border-0 text-white border-b-4 mt-6">
+            Order Now
+          </button>
         </div>
       </div>
     </div>

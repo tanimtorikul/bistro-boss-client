@@ -1,26 +1,62 @@
+import { NavLink } from "react-router-dom";
+
 const Navbar = () => {
   const navLinks = (
     <>
       <li>
-        <a>Home</a>
+        <NavLink
+          exact
+          to="/"
+          className="text-white px-4 py-2"
+          activeclassname="font-bold text-red-500"
+        >
+          Home
+        </NavLink>
       </li>
 
       <li>
-        <a>Contact Us</a>
+        <NavLink
+          to="/contact"
+          className="text-white px-4 py-2"
+          activeclassname="font-bold text-red-500"
+        >
+          Contact Us
+        </NavLink>
       </li>
+
       <li>
-        <a>Dashboard</a>
+        <NavLink
+          to="/dashboard"
+          className="text-whitepx-4 py-2"
+          activeclassname="font-bold text-red-500"
+        >
+          Dashboard
+        </NavLink>
       </li>
+
       <li>
-        <a>Our Menu</a>
+        <NavLink
+          to="/menu"
+          className="text-white px-4 py-2"
+          activeclassname="font-bold text-red-500"
+        >
+          Our Menu
+        </NavLink>
       </li>
+
       <li>
-        <a>Our Shop</a>
+        <NavLink
+          to="/shop"
+          className="text-white hover:text-blue-700 px-4 py-2"
+          activeclassname="font-bold text-red-500"
+        >
+          Our Shop
+        </NavLink>
       </li>
     </>
   );
   return (
-    <div className="navbar fixed z-10 bg-opacity-30 bg-black text-white max-w-screen-xl mx-auto">
+    <div className="navbar fixed z-10 bg-opacity-30 bg-black text-white  max-w-screen-xl mx-auto">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -41,7 +77,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-black rounded-box w-52"
           >
             {navLinks}
           </ul>

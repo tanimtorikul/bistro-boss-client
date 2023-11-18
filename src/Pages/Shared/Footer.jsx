@@ -60,7 +60,7 @@ const Footer = () => {
         </nav>
       </footer>
       <div className="flex justify-center">
-        <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
+        <p className="text-sm md:text-base">Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
       </div>
     </div>
   );
