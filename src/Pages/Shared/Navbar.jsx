@@ -13,17 +13,6 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
-
-      <li>
-        <NavLink
-          to="/contact"
-          className="text-white px-4 py-2"
-          activeclassname="font-bold text-red-500"
-        >
-          Contact Us
-        </NavLink>
-      </li>
-
       <li>
         <NavLink
           to="/dashboard"
@@ -46,11 +35,20 @@ const Navbar = () => {
 
       <li>
         <NavLink
-          to="/shop"
+          to="/order/salad"
           className="text-white hover:text-blue-700 px-4 py-2"
           activeclassname="font-bold text-red-500"
         >
-          Our Shop
+          Order Food
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/contact"
+          className="text-white px-4 py-2"
+          activeclassname="font-bold text-red-500"
+        >
+          Contact Us
         </NavLink>
       </li>
     </>
