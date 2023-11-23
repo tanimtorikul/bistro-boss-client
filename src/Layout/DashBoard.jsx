@@ -5,13 +5,15 @@ import {
   FaCalendar,
   FaHome,
   FaShoppingCart,
+  FaAlignJustify,
+  FaShoppingBag
 } from "react-icons/fa";
 
 const DashBoard = () => {
   return (
     <div className="flex max-w-screen-xl mx-auto">
       {/* dashboard sidebar */}
-      <div className="w-64 min-h-screen bg-[#da9021]">
+      <div className="w-64 min-h-screen bg-[#D1A054]">
         <ul className="menu">
           <li>
             <NavLink to="/dashboard/cart">
@@ -38,10 +40,26 @@ const DashBoard = () => {
               <FaBook size={20} /> My bookings
             </NavLink>
           </li>
+          <div className="divider"></div>
+          <li>
+            <NavLink to="/">
+              <FaHome size={20} /> Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/menu">
+              <FaAlignJustify  size={20} /> Menu
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/order/salad">
+              <FaShoppingBag size={20} /> Order
+            </NavLink>
+          </li>
         </ul>
       </div>
       {/* dashboard content */}
-      <div className="flex-1">
+      <div className="flex-1 bg-[#E8E8E8] flex flex-col items-center justify-center p-12">
         <Outlet></Outlet>
       </div>
     </div>
