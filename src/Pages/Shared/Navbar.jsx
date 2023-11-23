@@ -65,7 +65,7 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <Link to="/" className="flex items-center">
+        <Link to="/dashboard/cart" className="flex items-center">
           <button className="btn">
             <FaShoppingCart size={20} />
             <div className="badge badge-secondary">+{cart.length}</div>
