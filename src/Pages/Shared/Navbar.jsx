@@ -1,14 +1,27 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const navLinks = (
-    <>
+    <ul className="flex items-center space-x-4">
       <li>
         <NavLink
           exact
           to="/"
           className="text-white px-4 py-2"
-          activeclassname="font-bold text-red-500"
+          activeClassName="font-bold text-red-500"
         >
           Home
         </NavLink>
@@ -16,28 +29,26 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/dashboard"
-          className="text-whitepx-4 py-2"
-          activeclassname="font-bold text-red-500"
+          className="text-white px-4 py-2"
+          activeClassName="font-bold text-red-500"
         >
           Dashboard
         </NavLink>
       </li>
-
       <li>
         <NavLink
           to="/menu"
           className="text-white px-4 py-2"
-          activeclassname="font-bold text-red-500"
+          activeClassName="font-bold text-red-500"
         >
           Our Menu
         </NavLink>
       </li>
-
       <li>
         <NavLink
           to="/order/salad"
           className="text-white hover:text-blue-700 px-4 py-2"
-          activeclassname="font-bold text-red-500"
+          activeClassName="font-bold text-red-500"
         >
           Order Food
         </NavLink>
@@ -46,15 +57,24 @@ const Navbar = () => {
         <NavLink
           to="/contact"
           className="text-white px-4 py-2"
-          activeclassname="font-bold text-red-500"
+          activeClassName="font-bold text-red-500"
         >
           Contact Us
         </NavLink>
       </li>
-    </>
+      <li>
+        <Link to="/" className="flex items-center">
+          <button className="btn">
+            <FaShoppingCart size={20} />
+            <div className="badge badge-secondary">+0</div>
+          </button>
+        </Link>
+      </li>
+    </ul>
   );
+
   return (
-    <div className="navbar fixed z-10 bg-opacity-30 bg-black text-white  max-w-screen-xl mx-auto">
+    <div className="navbar fixed z-10 bg-opacity-30 bg-black text-white max-w-screen-xl mx-auto">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -84,11 +104,20 @@ const Navbar = () => {
           BistroBoss <br /> Restaurant
         </a>
       </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{navLinks}</ul>
-      </div>
+      <div className="navbar-center hidden lg:flex">{navLinks}</div>
       <div className="navbar-end">
-        <Link to='/login' className="btn">Login</Link>
+        {user ? (
+          <>
+            <span className="mr-2">{user?.displayName}</span>
+            <button onClick={handleLogout} className="btn">
+              Logout
+            </button>
+          </>
+        ) : (
+          <Link to="/login" className="btn">
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );

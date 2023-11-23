@@ -1,17 +1,24 @@
-import loginImg from "../../assets/others/authentication1.png";
-import loginBg from "../../assets/others/authentication.png";
+import React, { useEffect, useState, useContext } from "react";
+import { Helmet } from "react-helmet";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
-import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+
+import loginImg from "../../assets/others/authentication1.png";
 
 const Login = () => {
-  const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
+
+  const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -21,31 +28,41 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+
+    signIn(email, password)
+      .then((res) => {
+        const user = res.user;
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "User logged in successfully.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
-  const handleValidateCaptcha = () => {
-    const user_captcha_value = captchaRef.current.value;
-    if (validateCaptcha(user_captcha_value)) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
+
+  const handleValidateCaptcha = (e) => {
+    const user_captcha_value = e.target.value;
+    setDisabled(!validateCaptcha(user_captcha_value));
   };
+
   return (
     <>
       <Helmet>
         <title>Bistro Boss | Login</title>
       </Helmet>
-      <div
-        className="hero min-h-screen"
-        style={{ backgroundImage: `url(${loginBg})`, backgroundSize: "cover" }}
-      >
-        <div className="hero-content flex-col md:flex-row-reverse py-12 shadow-2xl	">
-          <div className="text-center md:w-1/2 lg:text-left">
-            <img src={loginImg} alt="Login Image" className="mb-6" />
+      <div className="hero min-h-screen">
+        <div className="hero-content flex-col md:flex-row-reverse py-12 shadow-2xl">
+          <div className="text-center md:w-1/3 lg:text-left">
+            <img src={loginImg} alt="Login Image" className="mb-6 mx-auto" />
           </div>
-          <div className="card md:w-1/2 max-w-sm shadow-2xl ">
-            <form onSubmit={handleLogin} className="card-body">
+          <div className="card md:w-2/3 max-w-md shadow-2xl bg-gray-100 rounded-md p-10">
+            <form onSubmit={handleLogin}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -53,8 +70,9 @@ const Login = () => {
                 <input
                   type="email"
                   name="email"
-                  placeholder="email"
-                  className="input input-bordered"
+                  placeholder="Email"
+                  className="input input-bordered my-2 p-2"
+                  required
                 />
               </div>
               <div className="form-control">
@@ -64,8 +82,9 @@ const Login = () => {
                 <input
                   type="password"
                   name="password"
-                  placeholder="password"
-                  className="input input-bordered"
+                  placeholder="Password"
+                  className="input input-bordered my-2 p-2"
+                  required
                 />
               </div>
               <div className="form-control">
@@ -73,32 +92,28 @@ const Login = () => {
                   <LoadCanvasTemplate />
                 </label>
                 <input
-                  ref={captchaRef}
+                  onBlur={handleValidateCaptcha}
                   type="text"
                   name="captcha"
-                  placeholder="type the above captcha"
-                  className="input input-bordered"
+                  placeholder="Type the above captcha"
+                  className="input input-bordered my-2 p-2"
+                  required
                 />
-                <button
-                  onClick={handleValidateCaptcha}
-                  className="btn btn-outline btn-xs mt-2"
-                >
-                  Validate
-                </button>
               </div>
               <div className="form-control mt-6">
                 <input
                   disabled={disabled}
-                  className="btn bg-[#D1A054B2] text-white"
+                  className={`btn bg-blue-500 hover:bg-blue-700 text-white rounded transition-colors duration-300 ${disabled && "opacity-50 cursor-not-allowed"}`}
                   type="submit"
-                  value="Sign in"
+                  value="Sign In"
                 />
               </div>
             </form>
-            <p>
-              <small>
-                New Here? <Link to="/signup">Create an account</Link>{" "}
-              </small>
+            <p className="mt-4 text-gray-600 text-center">
+              New Here?{" "}
+              <Link to="/signup" className="text-blue-500">
+                Create an account
+              </Link>
             </p>
           </div>
         </div>

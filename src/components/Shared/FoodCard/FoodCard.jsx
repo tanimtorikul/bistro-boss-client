@@ -1,5 +1,11 @@
+import useAuth from "../../../hooks/useAuth";
+
 const FoodCard = ({ item }) => {
   const { image, price, name, recipe } = item;
+  const { user } = useAuth();
+  const handleAddToCart = (food) => {
+    console.log(food);
+  };
   return (
     <div className="card w-[370px] bg-[#F3F3F3] relative">
       <figure>
@@ -12,7 +18,10 @@ const FoodCard = ({ item }) => {
         <h2 className="text-xl text-semibold text-black text-center">{name}</h2>
         <p className="text-[#737373]">{recipe}</p>
         <div className="card-actions justify-center">
-          <button className="rounded-lg  px-[30px] py-5 bg-[#E8E8E8] border-0 border-b-4 border-[#BB8506] hover:bg-[#1F2937] text-[#BB8506]">
+          <button
+            onClick={() => handleAddToCart(item)}
+            className="rounded-lg  px-[30px] py-5 bg-[#E8E8E8] border-0 border-b-4 border-[#BB8506] hover:bg-[#1F2937] text-[#BB8506]"
+          >
             Add To Cart
           </button>
         </div>
