@@ -10,6 +10,7 @@ import {
 } from "react-simple-captcha";
 
 import loginImg from "../../assets/others/authentication1.png";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
@@ -109,6 +110,10 @@ const Login = () => {
                 />
               </div>
             </form>
+            <div className="divider">OR</div>
+           <div className="text-center">
+           <SocialLogin />
+           </div>
             <p className="mt-4 text-gray-600 text-center">
               New Here?{" "}
               <Link to="/signup" className="text-blue-500">

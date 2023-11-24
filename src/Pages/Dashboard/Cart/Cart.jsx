@@ -34,8 +34,8 @@ const Cart = () => {
   return (
     <>
       <h2 className="text-4xl mb-12">My Cart</h2>
-      <div className="bg-white shadow-xl flex flex-col p-12 items-center w-[992px] ">
-        <div className="flex gap-24 mb-12">
+      <div className="bg-white shadow-xl flex flex-col p-12  w-[992px] ">
+        <div className="flex gap-24 mb-12 justify-between">
           <h2 className="text-[32px] font-bold">Total Items: {cart.length}</h2>
           <h2 className="text-[32px] font-bold">Total Price: ${totalPrice}</h2>
           <button className="btn bg-[#D1A054] text-white">Pay</button>
