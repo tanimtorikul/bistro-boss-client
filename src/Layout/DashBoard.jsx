@@ -11,9 +11,10 @@ import {
   FaList,
   FaUsers,
 } from "react-icons/fa";
+import useAdmin from "../hooks/useAdmin";
 
 const DashBoard = () => {
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
   return (
     <div className="flex max-w-screen-xl mx-auto">
       {/* dashboard sidebar */}
