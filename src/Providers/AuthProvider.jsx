@@ -29,11 +29,10 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-
   const googleSignIn = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
-  }
+  };
 
   const updateUserProfile = (name, photo) => {
     return updateProfile(auth.currentUser, {
@@ -45,6 +44,11 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      if (currentUser) {
+        //  get token and store client
+      } else {
+        // remove token (if token stored in the client side)
+      }
       setLoading(false);
     });
     return () => {
