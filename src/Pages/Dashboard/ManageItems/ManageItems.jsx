@@ -3,9 +3,15 @@ import SectionTitle from "../../../components/sectionTitle/sectionTitle";
 import useMenu from "../../../hooks/useMenu";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
+
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
 
 const ManageItems = () => {
-  const {menu, refetch} = useMenu();
+  const { menu, refetch } = useMenu();
   const axiosSecure = useAxiosSecure();
 
   const handleDeleteItem = (item) => {
@@ -74,12 +80,11 @@ const ManageItems = () => {
                   <td>{item.name}</td>
                   <td>${item.price}</td>
                   <th>
-                    <button
-                      onClick={() => handleUpdateItem(item)}
-                      className="btn btn-ghost btn-lg"
-                    >
-                      <FaEdit className="text-[#D1A054]"></FaEdit>
-                    </button>
+                    <Link to={`/dashboard/updateItem/${item._id}`}>
+                      <button className="btn btn-ghost btn-lg">
+                        <FaEdit className="text-[#D1A054]"></FaEdit>
+                      </button>
+                    </Link>
                   </th>
                   <th>
                     <button
